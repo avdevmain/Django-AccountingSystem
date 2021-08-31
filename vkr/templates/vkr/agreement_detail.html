@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+{% load mathfilters %}
+{% block content %}
+  <h1> {{ agreement }}</h1>
+
+  <p><strong>Контрагент:</strong> {{ agreement.counterparty }}</p>
+    <p><strong>Сроки:</strong> {{ agreement.startTerm }}-{{agreement.endTerm}}</p>
+
+
+ <h2>Список услуг</h2>
+
+    <table>
+    <tr>
+        <th>Название</th>
+        <th>Цена за единицу</th>
+        <th>Количество</th>
+        <th>Сумма без НДС</th>
+        <th>НДС</th>
+        <th>Итоговая сумма</th>
+        <th>Открыть</th>
+    </tr>
+    {% for one in agreement.agreementservice_set.all %}
+    <tr> 
+        <td>{{ one.service.title }}</td>
+         <td>{{one.service.costperunit}}</td>
+        <td>{{one.amount}}</td>
+        <td>{{one.sum}}</td>
+        <td>{{one.nds}}</td>
+         <td>{{one.total}}</td>
+         <td><p style="margin-left: 15px"> <a href="{{ one.get_absolute_url }}" class="btn btn-primary" role="button">></a></p> </td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'agreementservice_create' agreement.id %}" class="btn btn-primary" role="button">Добавить услугу</a>
+
+<br>
+
+
+<h2>Итого: {{agreement.sum}} руб.</h2> 
+
+
+<br>
+
+ <h2>Список документов</h2>
+
+    <table>
+    <tr>
+        <th>Тип</th>
+        <th>Статус</th>
+        <th>Открыть</th>
+    </tr>
+    {% for one in agreement.agreementdocument_set.all %}
+    <tr> 
+        <td>{{ one.type }}</td>
+         <td>{{one.status}}</td>
+<td><p style="margin-left: 10px"> <a href="{{ one.get_absolute_url }}" class="btn btn-primary" role="button">></a></p> </td>
+  
+        
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'document_create' agreement.id %}" class="btn btn-primary" role="button">Добавить документ</a>
+<hr>
+
+<a href="{% url 'agreement_update' agreement.id %}" class="btn btn-primary" role="button">Изменить</a>
+<button type="button" class="btn btn-danger">Удалить</button>
+
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{%if header == None %}<h1>Редактирование услуги соглашения</h1> 
+
+{%else%}
+<h1>{{header}}</h1>
+{%endif%}
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form }}
+    </table>
+      <input class="btn btn-primary" type="submit" value="Подтвердить">
+
+</form>
+
+
+{% endblock %}

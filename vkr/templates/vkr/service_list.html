@@ -1,0 +1,38 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+ <h1>Список услуг</h1>
+
+   <p style="margin-left: 40px"> <a href="{% url 'service_create' %}" class="btn btn-primary" role="button">Создать</a></p>
+
+    {% if service_list %}
+    <ul>
+
+{% include 'sortable_listview/sort_links.html' %}
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Стоимость за единицу</th>
+        <th>Открыть</th>
+    </tr>
+    {% for service in service_list %}
+    <tr> 
+        <td> {{ service.title }}</td>
+        <td>{{ service.costperunit }} / {{service.measure.title}}</td>
+                <td><p style="margin-left: 10px"> <a href="{{ service.get_absolute_url }}" class="btn btn-primary" role="button">></a></p> </td>
+    </tr>
+    {% endfor %}
+</table>
+
+    {% include 'sortable_listview/pagination.html' %}
+    </ul>
+
+    {% else %}
+    <p> Нет созданных услуг! </p>
+    {% endif %}
+
+
+
+{% endblock %}

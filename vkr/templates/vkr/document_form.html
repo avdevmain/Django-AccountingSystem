@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Добавление документа</h1>
+
+<form enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form }}
+    </table>
+      <input class="btn btn-primary" type="submit" value="Подтвердить">
+
+</form>
+{% endblock %}

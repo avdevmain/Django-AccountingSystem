@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+ <h1>Документы</h1>
+
+
+<a href="{% url 'documents' %}" class="btn btn-primary" role="button">Все документы</a>
+<a href="{% url 'saldo' %}" class="btn btn-warning" role="button">Оборотно-сальдовая ведомость</a>
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+ <h1>Список соглашений</h1>
+
+   
+
+
+    {% if agreement_list %}
+
+       <p style="margin-left: 40px"> <a href="{% url 'agreement_create' %}" class="btn btn-primary" role="button">Создать</a></p>
+
+        
+
+    <ul>
+
+    {% include 'sortable_listview/sort_links.html' %}
+<table>
+    <tr>
+        <th>Идентификатор</th>
+        <th>Контрагент</th>
+        <th>Сроки</th>
+        <th>Объект</th>
+        <th>Статус</th>
+        <th>Открыть</th>
+    </tr>
+    {% for one in agreement_list %}
+    <tr> 
+        <td>{{ one.id }}</td>
+        <td>{{ one.counterparty }} </td>
+        <td>{{ one.startTerm }} - {{one.endTerm}} </td>
+        <td>{{ one.address }} </td>
+        <td>{{ one.status }} </td>
+        <td><p style="margin-left: 10px"> <a href="{{ one.get_absolute_url }}" class="btn btn-primary" role="button">></a></p> </td>
+    </tr>
+    {% endfor %}
+
+
+
+</table>
+
+{% include 'sortable_listview/pagination.html' %}
+    </ul>
+
+    {% else %}
+    <p> Нет соглашений! </p>
+    {% endif %}
+
+
+{% endblock %}

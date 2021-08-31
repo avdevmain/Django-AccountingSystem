@@ -1,0 +1,40 @@
+
+{% extends "base_generic.html" %}
+
+  </style>
+{% block content %}
+
+ <h1>Список контрагентов</h1>
+
+    {% if counterparty_list %}
+       <p style="margin-left: 40px"> <a href="{% url 'counterparty_create' %}" class="btn btn-primary" role="button">Создать</a></p>
+
+    <ul>
+{% include 'sortable_listview/sort_links.html' %}
+<table>
+    <tr>
+        <th>Тип</th>
+        <th>Наименование</th>
+        <th>Электронная почта</th>
+        <th>Открыть</th>
+    </tr>
+    {% for one in counterparty_list %}
+    <tr> 
+        <td>{{ one.type }} </td>
+        <td>{{ one }}</td>
+        <td>{{one.email}}</td>
+        <td><p style="margin-left: 10px"> <a href="{{ one.get_absolute_url }}" class="btn btn-primary" role="button">></a></p> </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% include 'sortable_listview/pagination.html' %}
+
+    </ul>
+
+    {% else %}
+    <p> Нет контрагентов! </p>
+    {% endif %}
+
+
+{% endblock %}

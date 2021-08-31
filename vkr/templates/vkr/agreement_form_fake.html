@@ -1,0 +1,122 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Создание соглашения</h1>
+
+
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+  
+
+</form>
+
+  <select class="form-select" aria-label="Default select example">
+  <option selected>Выберите тип соглашение</option>
+  <option value="1">Оказание услуг</option>
+  <option value="2">Получение услуг</option>
+
+  </select>
+
+  
+
+  <br> 
+
+
+
+<hr>
+<h3>Перечень услуг</h3>
+<table>
+    <tr>
+        <th>Наименование</th>
+        <th>Стоимость</th>
+        <th>Количество</th>
+        <th>Сумма без НДС</th>
+        <th>НДС</th>
+        <th>Итог</th>
+    </tr>
+    <tr> 
+        <td>  <select class="form-select" aria-label="Default select example">
+  <option selected>Выберите услугу</option>
+  <option value="1">услуги проживания в гостинице</option>
+  <option value="2">хранение оружия в оружейной</option>
+
+  </select>  </td>
+        <td>  <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default"></span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div></td>
+
+<td>  <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default"></span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div></td>
+
+<td>  <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default"></span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div></td>
+<td>  <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default"></span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div></td>
+<td>  <div class="input-group mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-default"></span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div></td>
+
+    </tr>
+</table>
+
+
+
+
+<button type="button" class="btn btn-success">+</button>
+
+<h2>Итого</h2>
+<h4>75 600.00 рублей</h4>
+
+<hr>
+
+<h3>Перечень документов</h3>
+По данным соглашения необходимо сформировать:
+<br>
+<select class="form-select" multiple aria-label="multiple select example">
+  <option selected>Выберите типы документов</option>
+  <option value="1">Договор</option>
+  <option value="2">Акт</option>
+  <option value="3">Счет</option>
+</select>
+
+
+<br> <br>
+Все документы
+<table>
+    <tr>
+        <th>Тип</th>
+        <th>Статус</th>
+
+    </tr>
+    <tr> 
+        <td> Договор </td>
+        <td> Загружен </td>     
+    </tr>
+</table>
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupFile01"></label>
+  <input type="file" class="form-control" id="inputGroupFile01">
+</div>
+
+  <hr>
+
+  <input class="btn btn-primary" type="submit" value="Подтвердить">
+
+<a href="http://www.example.com"  type="submit" class="btn btn-primary" > Generate Code</a>
+
+
+{% endblock %}

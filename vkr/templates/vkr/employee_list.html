@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+
+<h2>Все пользователи системы</h2>
+<p style="margin-left: 0px"> <a href="{% url 'admin:auth_user_add' %}" class="btn btn-primary" role="button">Создать или изменить</a></p>
+{% include 'sortable_listview/sort_links.html' %}
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Логин</th>
+        <th>Электронная почта</th>
+        <th>Должность</th>
+
+    </tr>
+    {% for user in users %}
+    <tr> 
+        <td> {{user.last_name}} {{ user.first_name }}</td>
+        <td> {{ user.username }}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.groups.get}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% include 'sortable_listview/pagination.html' %}
+
+{% endblock %}

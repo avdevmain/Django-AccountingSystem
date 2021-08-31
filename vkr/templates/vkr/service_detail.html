@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1> {{ service.title }}</h1>
+
+  <p><strong>Стоимость за единицу:</strong> {{ service.costperunit }}</p>
+  <p><strong>Единица измерения:</strong> {{ service.measure.title }}</p>
+  <p><strong>НДС:</strong> {{ service.nds }}%</p>
+  <p><strong>Тип услуги:</strong> {{ service.type.title }}</p>
+  <p><strong>Относится к счету: {{service.account}} </strong></p>
+  
+
+<hr>
+
+<a href="{% url 'service_update' service.id %}" class="btn btn-primary" role="button">Изменить</a>
+<a href="{% url 'service_delete' service.id %}" class="btn btn-danger" role="button">Удалить</a>
+{% endblock %}

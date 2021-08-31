@@ -1,0 +1,52 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1> {{ counterparty }}</h1>
+
+  <p><strong>Тип:</strong> {{ counterparty.type }}</p>
+  <p><strong>ФИО контактного лица:</strong> {{ counterparty.lastname }} {{counterparty.firstname}} {{counterparty.middlename}}</p>
+  <p><strong>Телефон:</strong> {{ counterparty.phone }}</p>
+  <p><strong>Электронная почта:</strong> {{ counterparty.email }}</p>
+
+  {%if counterparty.type == 'Юридическое лицо' %}
+  <p>Наименование компании: {{counterparty.legalentity.title}} </p>
+  <p>ИНН: {{counterparty.legalentity.INN}} </p>
+  {%endif %}
+
+<h2>Список адресов</h2>
+
+    <table>
+    <tr>
+        <th>Тип</th>
+        <th>Полный адрес</th>
+        <th>Удалить</th>
+    </tr>
+    {% for one in counterparty.counterpartyaddress_set.all %}
+    <tr> 
+        <td>{{ one.type }}</td>
+         <td>{{one.address}}</td>
+<td><p style="margin-left: 10px"> <a href="{{ one.get_absolute_url }}" class="btn btn-danger" role="button">X</a></p> </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'address_create' counterparty.id %}" class="btn btn-primary" role="button">Добавить адрес</a>
+<hr>
+
+  <h2> История сотрудничества: </h2> <button type="button" class="btn btn-warning">Отчет по оборотам</button>
+
+    {% for one in counterparty.agreement_set.all %}
+    <hr>
+    {% if one.sumPaid < one.sum %} <mark><strong>ДОЛГ</strong> </mark> {%elif one.sumPaid > one.sum%} <mark><strong>ПЕРЕПЛАТА</strong> </mark>{%endif%}
+    <p><strong>Название:</strong><a href="{{ one.get_absolute_url }}" > {{one}} </a></p>
+    <p><strong>Сроки:</strong> {{one.startTerm}} - {{one.endTerm}}</p>
+    <p><strong>Сумма:</strong> {{one.sum}} </p>
+    <p><strong>Оплачено:</strong> {{one.sumPaid}} </p>
+    <p class="text-muted"><strong>Id:</strong> {{one.id}}</p>
+    {% endfor %}
+
+
+<button type="button" class="btn btn-primary">Изменить данные контрагента</button>
+<a href="{% url 'counterparty-delete' counterparty.id %}" class="btn btn-danger" role="button">Удалить контрагента</a>
+
+
+{% endblock %}

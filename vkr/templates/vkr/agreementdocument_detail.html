@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% load static %} 
+{% block content %}
+
+  <h1> {{ agreementdocument }}</h1>
+
+  <p><strong>Контрагент:</strong> {{ agreementdocument.agreement.counterparty }} </p>
+  <p><strong>Контактное лицо:</strong> {{ agreementdocument.agreement.counterparty.lastname }} {{ agreementdocument.agreement.counterparty.firstname }} {{ agreementdocument.agreement.counterparty.middlename }} </p>
+  <p><strong>Телефон:</strong> {{ agreementdocument.agreement.counterparty.phone }}
+  <p><strong>Электронная почта:</strong> {{ agreementdocument.agreement.counterparty.email }}  
+   <p><strong>Сроки:</strong> {{ agreementdocument.agreement.startTerm }} - {{agreementdocument.agreement.endTerm}} </p>
+ <p><strong>Статус:</strong> {{ agreementdocument.status }} </p>
+
+<hr>
+
+<button type="button" class="btn btn-primary">Подпись</button>
+
+<button type="button" class="btn btn-success">Сохранить</button>
+<button type="button" class="btn btn-success">Открыть</button>
+
+
+<button type="button" class="btn btn-primary">Печать</button>
+<button type="button" class="btn btn-primary">Отправить</button>
+<hr>
+<img src="{% static 'images/vorpic.png' %}"/>
+
+{% endblock %}

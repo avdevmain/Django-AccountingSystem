@@ -1,0 +1,39 @@
+
+{% extends "base_generic.html" %}
+
+  </style>
+{% block content %}
+
+ <h1>Список документов</h1>
+
+    {% if agreementdocument_list %}
+    <ul>
+{% include 'sortable_listview/sort_links.html' %}
+<table>
+    <tr>
+        <th>Идентификатор</th>
+        <th>Соглашение</th>
+        <th>Тип</th>
+        <th>Статус</th>
+        <th>Открыть</th>
+    </tr>
+    {% for one in agreementdocument_list %}
+    <tr> 
+        <td>{{ one.id }}</td>
+        <td>{{ one.agreement }} </td>
+        <td>{{ one.type }} </td>
+        <td>{{ one.status }} </td>
+<td><p style="margin-left: 10px"> <a href="{{ one.get_absolute_url }}" class="btn btn-primary" role="button">></a></p> </td>
+
+    </tr>
+    {% endfor %}
+</table>
+{% include 'sortable_listview/pagination.html' %}
+    </ul>
+
+    {% else %}
+    <p> Нет документов! </p>
+    {% endif %}
+
+
+{% endblock %}
